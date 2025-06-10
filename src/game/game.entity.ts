@@ -27,9 +27,9 @@ export class GameEntity {
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 
-  @ManyToMany(() => PlatformEntity)
+  @ManyToMany(() => PlatformEntity, (platform) => platform.games)
   @JoinTable({
-    name: 'game_platforms',
+    name: 'games_platforms',
     joinColumn: { name: 'game_id' },
     inverseJoinColumn: { name: 'platform_id' },
   })
