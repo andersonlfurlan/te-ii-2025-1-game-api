@@ -24,7 +24,7 @@ export class PlatformService {
     return this.platformRepository.save(platformEntity);
   }
 
-  async update(platformId: string, platformDto: PlatformDto) {
+  update(platformId: string, platformDto: PlatformDto) {
     // return this.platformRepository.update({ id: platformId }, platformDto);
     return this.platformRepository.save({
       ...platformDto,
