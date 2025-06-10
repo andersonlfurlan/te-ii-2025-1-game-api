@@ -7,8 +7,10 @@ import {
   IsNumber,
   Min,
   ArrayNotEmpty,
-  ArrayUnique,
+  ValidateNested,
+  IsArray,
 } from 'class-validator';
+import { PlatformDto } from 'src/platform/platform.dto';
 
 export class GameDto {
   @IsUUID('4', { message: 'O campo ID deve ser um UUID' })
@@ -35,7 +37,7 @@ export class GameDto {
   price: number;
 
   @ArrayNotEmpty({ message: 'O campo platforms não pode ser vazio' })
-  @ArrayUnique({ message: 'O campo platforms não pode ter duplicatas' })
-  @IsUUID('4', { each: true, message: 'Cada plataforma deve ser um UUID' })
-  platforms: string[];
+  @ValidateNested({ message: 'O objeto deve ser do tipo platform' })
+  @IsArray({ message: 'O campo platform deve ser um array' })
+  platforms: PlatformDto[];
 }
